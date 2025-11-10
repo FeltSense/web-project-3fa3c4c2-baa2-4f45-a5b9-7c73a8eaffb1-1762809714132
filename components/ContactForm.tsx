@@ -21,9 +21,9 @@ export default function ContactForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          project_id: '3fa3c4c2-baa2-4f45-a5b9-7c73a8eaffb1',  // NEW: Track which project this form belongs to
-          website_id: '3fa3c4c2-baa2-4f45-a5b9-7c73a8eaffb1',  // Legacy support
-          founder_id: 'null',    // NEW: Track project owner
+          project_id: '3fa3c4c2-baa2-4f45-a5b9-7c73a8eaffb1',
+          website_id: '3fa3c4c2-baa2-4f45-a5b9-7c73a8eaffb1',
+          founder_id: 'null',
           form_data: { ...formData, submitted_at: new Date().toISOString() }
         })
       });
@@ -55,91 +55,89 @@ export default function ContactForm() {
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-      </div>
+            </div>
             <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
             <p className="text-gray-600">Thank you for reaching out. We&apos;ll get back to you soon.</p>
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
     );
-      }
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
     <section className="py-24 bg-gradient-to-br from-slate-50 to-slate-100">
-  <div className="max-w-2xl mx-auto px-4">
-    <div className="text-center mb-12">
-      <h2 className="text-4xl font-bold text-slate-900 mb-3">Get In Touch</h2>
-      <p className="text-lg text-slate-600">We&apos;d love to hear from you. Reach out and let&apos;s start a conversation.</p>
-    </div>
-    
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-slate-900 mb-2">Full Name</label>
-        <input 
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="John Doe"
-          required
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
-        />
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-slate-900 mb-3">Get In Touch</h2>
+          <p className="text-lg text-slate-600">We&apos;d love to hear from you. Reach out and let&apos;s start a conversation.</p>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-semibold text-slate-900 mb-2">Full Name</label>
+            <input 
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="John Doe"
+              required
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">Email Address</label>
+            <input 
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="you@company.com"
+              required
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="phone" className="block text-sm font-semibold text-slate-900 mb-2">Phone Number</label>
+            <input 
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="+1 (555) 000-0000"
+              required
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={5}
+              placeholder="Tell us about your project, goals, or how we can help..."
+              required
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 resize-none transition-all"
+            ></textarea>
+          </div>
+          
+          <button 
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+          >
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </button>
+        </form>
       </div>
-      
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">Email Address</label>
-        <input 
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="you@company.com"
-          required
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="phone" className="block text-sm font-semibold text-slate-900 mb-2">Phone Number</label>
-        <input 
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="+1 (555) 000-0000"
-          required
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 transition-all"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">Your Message</label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          rows={5}
-          placeholder="Tell us about your project, goals, or how we can help..."
-          required
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900 placeholder-slate-400 resize-none transition-all"
-        ></textarea>
-      </div>
-      
-      <button 
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
-      >
-        {isSubmitting ? &apos;Sending...&apos; : &apos;Send Message&apos;}
-      </button>
-    </div>
-  </div>
-</section>
-    </form>
+    </section>
   );
 }
